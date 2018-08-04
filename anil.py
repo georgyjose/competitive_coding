@@ -1,0 +1,1 @@
+file2=open(anil.txt,'r')
