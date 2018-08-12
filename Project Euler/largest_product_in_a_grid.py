@@ -18,13 +18,30 @@ def rightmax(b,m):
     return m
 
 def ondiagonalmax(b,m):
-    pass
+    i = 0
+    while i+4<20:
+        j = 0
+        while j+4<20:
+            m = max(m,numpy.prod([b[i][j],b[i+1][j+1],b[i+2][j+2],b[i+3][j+3]]))
+            j += 1
+        i += 1
+    return m
 
 def offdiagonalmax(b,m):
-    pass
+    i = 0
+    while i<20:
+        j=0
+        while j+4<20:
+            if i-4>0:
+                m = max(m,numpy.prod([b[i][j],b[i-1][j+1],b[i-2][j+2],b[i-3][j+3]]))
+                # print(numpy.prod([b[i][j],b[i-1][j+1],b[i-2][j+2],b[i-3][j+3]]))
+            j += 1
+        i += 1
+    return m
     
 
 with open(path,"r") as a:
     b = [list(map(int,i.split())) for i in a]
     
-print(downmax(b,0),rightmax(b,0))
+print(downmax(b,0),rightmax(b,0),offdiagonalmax(b,0),ondiagonalmax(b,0))
+print("Maximum:",max([downmax(b,0),rightmax(b,0),offdiagonalmax(b,0),ondiagonalmax(b,0)]))
